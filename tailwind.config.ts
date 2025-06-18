@@ -59,6 +59,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+         'edforma-teal': '#14B8A6',
+        'edforma-dark': '#0F172A',
+        'edforma-slate': '#94A3B8',
+        'edforma-light': '#F8FAFC',
       },
       keyframes: {
         "accordion-down": {
