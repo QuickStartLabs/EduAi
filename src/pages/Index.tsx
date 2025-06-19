@@ -86,7 +86,7 @@ const testimonials = [
         <CardsKit.Cards className="group relative overflow-hidden bg-transparent shadow-none border-none transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
           <div className="relative">
             <img 
-              src="https://miro.medium.com/v2/resize:fit:1024/1*o7D9tsb2MVokChEMsECr7g.png" 
+              src="https://wesoftyou.com/wp-content/uploads/2024/08/ai-artificial-intelligence-search-engine-600nw-2304697097.webp" 
               alt="AI Learning" 
               className="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-110" 
             />
@@ -146,7 +146,7 @@ const testimonials = [
         <CardsKit.Cards className="group relative overflow-hidden bg-transparent shadow-none border-none transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
           <div className="relative">
             <img 
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT92EJW38FD2GxMdtRsPpiNHScpoldNUKCxVA&s" 
+              src="https://siliconafrica.org/wp-content/uploads/2024/01/images-12.jpeg" 
               alt="Smart Solutions" 
               className="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-110" 
             />
@@ -222,6 +222,12 @@ return () => window.removeEventListener("scroll", checkVisibility);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+      setInit(true);
+    });
+  }, []);
+  useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
@@ -289,6 +295,7 @@ try {
     ],
   };  return (
     <div className="min-h-screen  text-edforma-light relative overflow-hidden font-sans bg-gradient-to-r from-blue-500 to-purple-500">
+      {/* Render Particles only after init is true */}
       {init && (
         <Particles
           id="tsparticles"
@@ -296,13 +303,31 @@ try {
             background: { color: { value: "transparent" } },
             fpsLimit: 60,
             interactivity: {
-              events: { onHover: { enable: true, mode: "bubble" }, onClick: { enable: true, mode: "push" } },
-              modes: { bubble: { distance: 200, size: 4 , duration: 2, opacity: 0.8 }, push: { quantity: 2 } },
+              events: { 
+                onHover: { enable: true, mode: "bubble" }, 
+                onClick: { enable: true, mode: "push" } 
+              },
+              modes: { 
+                bubble: { distance: 200, size: 4, duration: 2, opacity: 0.8 }, 
+                push: { quantity: 2 } 
+              },
             },
             particles: {
               color: { value: "#14B8A6" },
-              links: { color: "#14B8A6", distance: 120, enable: true, opacity: 0.4, width: 0.8 },
-              move: { direction: "none", enable: true, outModes: "out", random: false, speed: 0.5 },
+              links: { 
+                color: "#14B8A6", 
+                distance: 120, 
+                enable: true, 
+                opacity: 0.4, 
+                width: 0.8 
+              },
+              move: { 
+                direction: "none", 
+                enable: true, 
+                outModes: "out", 
+                random: false, 
+                speed: 0.5 
+              },
               number: { density: { enable: true }, value: 60 },
               opacity: { value: { min: 0.2, max: 0.5 } },
               shape: { type: "circle" },
@@ -314,6 +339,45 @@ try {
       )}
 
   <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4">
+     <Particles
+          id="tsparticles"
+          options={{
+            background: { color: { value: "transparent" } },
+            fpsLimit: 60,
+            interactivity: {
+              events: { 
+                onHover: { enable: true, mode: "bubble" }, 
+                onClick: { enable: true, mode: "push" } 
+              },
+              modes: { 
+                bubble: { distance: 200, size: 4, duration: 2, opacity: 0.8 }, 
+                push: { quantity: 2 } 
+              },
+            },
+            particles: {
+              color: { value: "#14B8A6" },
+              links: { 
+                color: "#14B8A6", 
+                distance: 120, 
+                enable: true, 
+                opacity: 0.4, 
+                width: 0.8 
+              },
+              move: { 
+                direction: "none", 
+                enable: true, 
+                outModes: "out", 
+                random: false, 
+                speed: 0.5 
+              },
+              number: { density: { enable: true }, value: 60 },
+              opacity: { value: { min: 0.2, max: 0.5 } },
+              shape: { type: "circle" },
+              size: { value: { min: 1, max: 3 } },
+            },
+          }}
+          className="absolute inset-0 z-0 opacity-50"
+        />
     <div
       className={`flex items-center justify-between w-full max-w-7xl rounded-full px-6 transition-all duration-300 backdrop-blur-lg ${
         isScrolled ? "bg-edforma-dark/95 shadow-xl" : "bg-edforma-dark/80"
@@ -359,7 +423,7 @@ try {
   {isMobileMenuOpen && (
     <div className="fixed inset-0 bg-edforma-dark/95 z-50 flex flex-col items-center justify-center space-y-10 backdrop-blur-sm">
       <MobileNavItem icon={<Home className="h-7 w-7" />} label="Home" to="/" onClick={() => setIsMobileMenuOpen(false)} />
-      <MobileNavItem icon={<Info className="h-7 w-7" />} label="About" to="#about" onClick={handleAboutClick} />
+   {/*<MobileNavItem icon={<Info className="h-7 w-7" />} label="About" to="#about" onClick={handleAboutClick} />*/}
       <MobileNavItem icon={<ArrowRight className="h-7 w-7" />} label="Join Waitlist" to="#contact" onClick={handleJoinWaitlist} />
     </div>
   )}
@@ -369,9 +433,7 @@ try {
       <div className="container mx-auto max-w-7xl relative">
         <div className="flex flex-col items-center text-center">
           <div
-            className={`inline-flex items-center gap-3 px-5 py-2 rounded-full bg-edforma-teal/20 text-edforma-teal font-medium mb-8 transition-all duration-700 ease-out transform ${
-              isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-6 scale-95"
-            }`}
+            className={`inline-flex items-center gap-3 px-5 py-2 rounded-full bg-edforma-teal/20 text-edforma-teal font-medium mb-8 transition-all duration-700 ease-out transform`}
           >
             <Sparkles className="h-5 w-5" />
             <span>Transforming Education with AI</span>
@@ -420,16 +482,12 @@ try {
               <span className="text-lg text-black hover:animate-bounce">Learn More</span>
             </Button>
           </div>
-          <div
-            className={`mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl transition-all duration-700 delay-500 ease-out ${
-              isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            }`}
-          >
-          
-          </div>
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl"></div>
         </div>
       </div>
     </section>
+
+    {/* Divider */}
 
     <section id="about" className="py-24 px-4 bg-edforma-dark/95">
       <div className="container mx-auto max-w-7xl">
@@ -441,7 +499,6 @@ try {
             Redefining education with cutting-edge AI to deliver personalized learning tailored to you.
           </p>
         </div>
-
         <div className="font-sans flex animate-fade-in-up animation-delay-400">
           <Carousel
             cards={cards}
@@ -454,6 +511,7 @@ try {
         </div>
       </div>
     </section>
+
 
     <section id="features" className="py-24 px-4 bg-edforma-dark">
       <div className="container mx-auto max-w-7xl">
@@ -490,6 +548,7 @@ try {
       </div>
     </section>
 
+
     <section id="how-it-works" className="hidden md:block py-24 px-4 bg-edforma-dark">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
@@ -509,13 +568,14 @@ try {
               <div className="relative z-10 flex items-center justify-center h-20 w-20 rounded-full bg-edforma-dark/80 border-2 border-edforma-teal/30 group-hover:border-edforma-teal group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-105">
                 <step.icon className="h-8 w-8 text-edforma-teal" />
               </div>
-              <h3 className="text-lg font-semibold text-edforma-light mt-6 mb-2">{step.title}</h3>
-              <p className="text-edforma-slate leading-relaxed">{step.description}</p>
+              <h3 className="text-lg font-semibold text-edforma-light mt-6 mb-2 group-hover:text-edforma-teal transition-colors duration-300">{step.title}</h3>
+              <p className="text-edforma-slate leading-relaxed group-hover:text-edforma-light transition-colors duration-300">{step.description}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
+
 
     <section id="testimonials" className="py-24 px-4 bg-gradient-to-b from-edforma-dark to-edforma-dark/90">
       <div className="container mx-auto max-w-7xl">
@@ -530,7 +590,7 @@ try {
         <Slider {...carouselSettings} className="relative animate-fade-in-up animation-delay-400">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="px-4">
-              <CardsKit.Cards className="p-8 bg-edforma-dark/60 backdrop-blur-md border border-edforma-slate/30 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group">
+              <CardsKit.Cards className="p-8 bg-edforma-dark/60 backdrop-blur-md border border-edforma-slate/30 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group focus-within:ring-4 focus-within:ring-edforma-teal/30">
                 <div className="flex mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400 transform transition-transform duration-300 group-hover:scale-110" style={{ animationDelay: `${i * 100}ms` }} />
@@ -547,7 +607,6 @@ try {
         </Slider>
       </div>
     </section>
-
     <section id="contact" className="py-24 px-4 bg-edforma-dark/95">
       <div className="container mx-auto max-w-3xl">
         <div className="text-center mb-16">
@@ -610,8 +669,6 @@ try {
       </div>
       <div className="flex justify-center mb-12">
         All rights are reserved by the @EDUAI
-        <div className="flex space-x-6">
-        </div>
       </div>
       <div
         className={`flex justify-center transition-all duration-1000 ease-out ${
